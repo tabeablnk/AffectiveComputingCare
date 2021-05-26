@@ -1,0 +1,24 @@
+@import '~@angular/material/theming';
+// Plus imports for other components in your app.
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat-core();
+$mat-care: ( 50: #e7ebe7, 100: #c2cdc3, 200: #9aac9c, 300: #728b74, 400: #537256, 500: #355938, 600: #305132, 700: #28482b, 800: #223e24, 900: #162e17, A100: #70ff77, A200: #3dff47, A400: #0aff16, A700: #00f00c, contrast: ( 50: #000000, 100: #000000, 200: #000000, 300: #000000, 400: #ffffff, 500: #ffffff, 600: #ffffff, 700: #ffffff, 800: #ffffff, 900: #ffffff, A100: #000000, A200: #000000, A400: #000000, A700: #000000, ));
+$mat-care-accent: ( 50: #f6f8ed, 100: #e8eed3, 200: #d9e3b6, 300: #cad799, 400: #becf83, 500: #b3c66d, 600: #acc065, 700: #a3b95a, 800: #9ab150, 900: #8ba43e, A100: #fdfff6, A200: #efffc3, A400: #e2ff90, A700: #dbff76, contrast: ( 50: #000000, 100: #000000, 200: #000000, 300: #000000, 400: #000000, 500: #000000, 600: #000000, 700: #000000, 800: #000000, 900: #000000, A100: #000000, A200: #000000, A400: #000000, A700: #000000, ));
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$care-app-primary: mat-palette($mat-care);
+$care-app-accent: mat-palette($mat-care-accent);
+// The warn palette is optional (defaults to red).
+$care-app-warn: mat-palette($mat-red);
+//WARNING YELLOW COLOR: #fcb831
+//SUCCESS GREEN COLOR: #93c25a
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as `color` or `typography`.
+$care-app-theme: mat-light-theme(( color: ( primary: $care-app-primary, accent: $care-app-accent, warn: $care-app-warn, )));
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($care-app-theme)
