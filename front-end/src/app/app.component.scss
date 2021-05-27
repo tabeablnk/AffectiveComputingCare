@@ -1,4 +1,44 @@
-.container {
-    text-align: center;
-    margin-top: 120px;
+.grid-container {
+    display: grid;
+    column-gap: 16px;
+    row-gap: 16px;
+    grid-template-columns: 33% 33% 33%;
+    grid-template-rows: 50% 50%;
+    height: 70vh;
+    width: 80vw;
+    margin: 0 auto;
+    margin-top: 32px;
+}
+
+#video-container {
+    grid-column-start: 1;
+    grid-column-end: span 1;
+}
+
+#emotions-container {
+    grid-column-start: 2;
+    grid-column-end: 4;
+}
+
+#drowsiness-container {
+    grid-column-start: 2;
+    grid-column-end: 2;
+}
+
+#summary-container {
+    grid-column-start: 1;
+    grid-column-end: 1;
+}
+
+#pain-container {
+    grid-column-start: 3;
+    grid-column-end: 3;
+}
+
+mat-toolbar {
+    background-color: white;
+    img {
+        width: 48px;
+        margin-right: 16px;
+    }
 }
