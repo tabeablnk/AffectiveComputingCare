@@ -1,1 +1,2 @@
-# AffectiveComputingCare
+# AffectiveComputing Projekt
+## Care With Love
