@@ -4,6 +4,12 @@
 
 /* You can add global styles to this file, and also import other style files */
 
+:root {
+    --primary: #3E6841;
+    --pink: #DB5461;
+    --blue: #64B6AC;
+}
+
 html,
 body {
     height: 100%;
@@ -13,11 +19,12 @@ body {
 
 body {
     font-family: Roboto, "Helvetica Neue", sans-serif;
-    background-color: #D3DCD4;
+    // background-color: #D3DCD4;
+    background-color: #F0F0F0;
 }
 
 mat-card {
-    height: 85%;
+    height: 90%;
     mat-card-title {
         font-size: 14px !important;
     }
