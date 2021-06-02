@@ -1,25 +1,11 @@
 <mat-toolbar>
-    <img src="../assets/logo.png">
+    <button mat-button [matMenuTriggerFor]="menu"><img src="../assets/logo.png"></button>
+        <mat-menu #menu="matMenu">
+            <a mat-menu-item routerLink="/home">Home</a>
+            <a mat-menu-item routerLink="/patientenList">Patientenliste</a>
+        </mat-menu>
+    
     <span>Wilkommen zu Care With Love</span>
 </mat-toolbar>
-<div class="grid-container">
 
-
-    <!-- Video Component -> shows video of the patient -> Input Data -->
-    <app-video id="video-container"></app-video>
-
-    <!-- Emotions / Überblick über die psychische Bedrüfnisse des Patienten -->
-    <app-emotions id="emotions-container"></app-emotions>
-
-    <!-- Overview Component -> gives overview over patients state -->
-    <app-summary id="summary-container"></app-summary>
-
-    <!-- Drowsiness / Müdigkeit Component -->
-    <app-drowsiness id="drowsiness-container"></app-drowsiness>
-
-    <!-- Pain / Schmerz Component -->
-    <app-pain id="pain-container"></app-pain>
-
-
-
-</div>
+<router-outlet></router-outlet>
