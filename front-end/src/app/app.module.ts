@@ -13,6 +13,7 @@ import { DrowsinessComponent } from './drowsiness/drowsiness.component';
 import { EmotionsComponent } from './emotions/emotions.component';
 import { PatientenListComponent } from './patienten-list/patienten-list.component';
 import { HomeComponent } from './home/home.component';
+import { TestPatientComponent } from './test-patient/test-patient.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { HomeComponent } from './home/home.component';
     DrowsinessComponent,
     EmotionsComponent,
     PatientenListComponent,
-    HomeComponent
+    HomeComponent,
+    TestPatientComponent
   ],
   imports: [
     BrowserModule,
