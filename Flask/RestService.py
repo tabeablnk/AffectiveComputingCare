@@ -1,5 +1,6 @@
 from flask import Flask, jsonify;
 from flask_cors import CORS, cross_origin
+import json
 
 app = Flask(__name__)
 cors = CORS(app, resources={r"/foo": {"origins": "http://localhost:4200"}})
@@ -10,20 +11,16 @@ app.config['CORS_HEADERS'] = 'Content-Type'
 def index():
     return "Welcome to Affective Computing"
 
-@app.route("/getMood/", methods = ['GET'])
+@app.route("/getPatientData/", methods = ['GET'])
 @cross_origin(origin='localhost',headers=['Content- Type','Authorization'])
-def GetMood():
-     patientData = {
-     "data": [
-     {
-         "sad": "0.3",
-         "happy": "0.7",
-         "neutral": "0.2"
-     },
-     ]
-    }
+def GetPatientData():
+     patientData = json.load(open('patientData.json'))
+     print(patientData)
      response = jsonify([patientData])
      return response
 
 if __name__ == '__main__':
     app.run(debug=True)
+
+
+

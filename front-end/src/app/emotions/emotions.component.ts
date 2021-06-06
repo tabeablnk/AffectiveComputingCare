@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { RestService } from '../Services/rest.service';
 
 @Component({
   selector: 'app-emotions',
@@ -7,15 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EmotionsComponent implements OnInit {
 
-  constructor() { }
+  constructor(public rs: RestService) { }
 
   ngOnInit(): void {
   }
 
   public chartType: string = 'horizontalBar';
 
+  // TODO filter emotion data
   public chartDatasets: Array<any> = [
-    { data: [85, 59, 60]}
+    { data: this.rs.patientData}
   ];
 
   public chartLabels: Array<any> = ['Traurig', 'Glücklich', 'Neutral'];

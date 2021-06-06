@@ -33,6 +33,7 @@ import { RestService } from './Services/rest.service';
     BrowserModule,
     AppRoutingModule,
     MaterialModule,
+    BrowserAnimationsModule,
     MDBBootstrapModule.forRoot(),
     HttpClientModule
   ],

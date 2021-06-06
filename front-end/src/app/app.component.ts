@@ -1,6 +1,5 @@
 import { Component, OnInit} from '@angular/core';
 import { RestService } from './Services/rest.service';
-import {Weather} from './Weather'
 
 @Component({
   selector: 'app-root',
@@ -14,20 +13,8 @@ export class AppComponent implements OnInit {
   constructor(private rs : RestService){}
 
   ngOnInit()
-  {
-      this.rs.getMoodData()
-      .subscribe
-        (
-          (response) => 
-          {
-            console.log(response[0]["data"]);
-          },
-          (error) =>
-          {
-            console.log("No Data Found" + error);
-          }
-
-        )
+  { 
+     this.rs.getPatientData();
   }
 }
 
