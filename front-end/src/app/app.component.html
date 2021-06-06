@@ -1,25 +1,11 @@
 <mat-toolbar>
     <button mat-button [matMenuTriggerFor]="menu"><img src="../assets/logo.png"></button>
-        <mat-menu #menu="matMenu">
-            <a mat-menu-item routerLink="/home">Testpatient</a>
-            <a mat-menu-item routerLink="/patientenListe">Patientenliste</a>
-        </mat-menu>
+    <mat-menu #menu="matMenu">
+        <a mat-menu-item routerLink="/home">Testpatient</a>
+        <a mat-menu-item routerLink="/patientenListe">Patientenliste</a>
+    </mat-menu>
     <span routerLink="/" style="cursor: pointer;">Wilkommen zu Care With Love</span>
 </mat-toolbar>
 
-<table id="weather">
-    <tr>
-        <th *ngFor="let column of headers">
-            {{column}}
-        </th>
-    </tr>
-
-    <tr *ngFor="let row of weather">
-        <td *ngFor="let col of headers">
-            {{row[col]}}
-        </td>
-    </tr>
-
-</table>
 
 <router-outlet></router-outlet>

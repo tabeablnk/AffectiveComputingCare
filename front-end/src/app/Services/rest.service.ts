@@ -1,6 +1,5 @@
 import { Injectable, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Weather } from '../Weather';
 
 @Injectable({
   providedIn: 'root'
@@ -12,10 +11,10 @@ export class RestService implements OnInit {
   ngOnInit(){
   }
 
-  weatherUrl : string = "http://127.0.0.1:5000/weatherReport/";
+  moodUrl : string = "http://127.0.0.1:5000/getMood/";
 
-  readWeather()
+  getMoodData()
   {
-    return this.http.get<Weather[]>(this.weatherUrl);
+    return this.http.get<any>(this.moodUrl);
   }
 }

@@ -13,18 +13,14 @@ export class AppComponent implements OnInit {
 
   constructor(private rs : RestService){}
 
-  headers = ["day","temperature", "windspeed",  "event"]
-
-  weather : Weather[] = [];
-
   ngOnInit()
   {
-      this.rs.readWeather()
+      this.rs.getMoodData()
       .subscribe
         (
           (response) => 
           {
-            this.weather = response[0]["data"];
+            console.log(response[0]["data"]);
           },
           (error) =>
           {
