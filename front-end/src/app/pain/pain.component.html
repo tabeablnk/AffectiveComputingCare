@@ -1,3 +1,16 @@
 <mat-card>
     <mat-card-title>Schmerz</mat-card-title>
+
+    <div style="display: block">
+        <canvas mdbChart
+            [chartType]="chartType"
+            [datasets]="chartDatasets"
+            [labels]="chartLabels"
+            [colors]="chartColors"
+            [options]="chartOptions"
+            (chartHover)="chartHovered($event)"
+            (chartClick)="chartClicked($event)">
+        </canvas>
+      </div>
+
 </mat-card>
