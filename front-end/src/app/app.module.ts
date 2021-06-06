@@ -14,6 +14,8 @@ import { EmotionsComponent } from './emotions/emotions.component';
 import { PatientenListComponent } from './patienten-list/patienten-list.component';
 import { HomeComponent } from './home/home.component';
 import { TestPatientComponent } from './test-patient/test-patient.component';
+import { HttpClientModule } from '@angular/common/http';
+import { RestService } from './Services/rest.service';
 
 @NgModule({
   declarations: [
@@ -32,9 +34,10 @@ import { TestPatientComponent } from './test-patient/test-patient.component';
     AppRoutingModule,
     MaterialModule,
     BrowserAnimationsModule,
-    MDBBootstrapModule.forRoot()
+    MDBBootstrapModule.forRoot(),
+    HttpClientModule
   ],
-  providers: [],
+  providers: [RestService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
