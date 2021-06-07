@@ -25,3 +25,15 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+## get data from patientenData
+
+response[0]["data"] = komplettes Array
+						
+response[0]["data"][0] = erste position im Array
+
+response[0]["data"][0]["index"] = 0 -> Werte der position "index" des ersten Eintrags
+
+response[0]["data"][0]["emotions"][0] = Emotions-array
+
+response[0]["data"][0]["emotions"][0]["happy"] = 0.7 -> Wert der Position "happy" aus dem emotions-array aus dem ersten Eintrag im gesamten Daten-Array

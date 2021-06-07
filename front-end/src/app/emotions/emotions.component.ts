@@ -17,7 +17,7 @@ export class EmotionsComponent implements OnInit {
 
   // TODO filter emotion data
   public chartDatasets: Array<any> = [
-    { data: this.rs.patientData}
+    //{ data: this.rs.patientData}
   ];
 
   public chartLabels: Array<any> = ['Traurig', 'Glücklich', 'Neutral'];
