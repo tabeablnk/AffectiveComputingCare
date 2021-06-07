@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { waitForAsync } from '@angular/core/testing';
 import { RestService } from '../Services/rest.service';
 
 @Component({
@@ -8,19 +9,43 @@ import { RestService } from '../Services/rest.service';
 })
 export class EmotionsComponent implements OnInit {
 
+  sad = 0;
+  neutral = 0;
+  happy = 0;
+
   constructor(public rs: RestService) { }
 
-  ngOnInit(): void {
+  patientData: any;
+
+  ngOnInit(){
+    this.rs.getPatientData()
+    .subscribe
+      (
+        (response) => 
+        {
+          this.patientData = response[0]["data"][0]["emotions"][0];
+          console.log("happy: " + this.patientData["happy"]);
+          console.log("sad: " + this.patientData["sad"]);
+          console.log("neutral: " + this.patientData["neutral"]);
+          this.sad = this.patientData["sad"];
+          this.neutral = this.patientData["neutral"];
+          this.happy = this.patientData["happy"];
+        },
+        (error) =>
+        {
+          console.log("No Data Found" + error);
+        }
+
+      );
   }
 
-  public chartType: string = 'horizontalBar';
+  public chartType: string = 'bar';
 
-  // TODO filter emotion data
   public chartDatasets: Array<any> = [
-    //{ data: this.rs.patientData}
+    { data: [this.sad, this.happy, this.neutral]}
   ];
 
-  public chartLabels: Array<any> = ['Traurig', 'Glücklich', 'Neutral'];
+  public chartLabels: Array<any> = ['Traurig', 'Neutral', 'Happy'];
 
   public chartColors: Array<any> = [
     {
@@ -29,7 +54,7 @@ export class EmotionsComponent implements OnInit {
         'rgba(255, 206, 86, 0.2)',
         'rgba(75, 192, 192, 0.2)',
       ],
-      
+
       borderColor: [
         'rgba(54, 162, 235, 1)',
         'rgba(255, 206, 86, 1)',
