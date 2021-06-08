@@ -19,10 +19,4 @@ export class StateService {
     return this.state;
   }
 
-  public getEmotions() {
-    let emotions = this.rs.patientData[this.state]["emotions"];
-    return [
-      { data: [emotions["sad"], emotions["neutral"], emotions["happy"]]}
-    ]
-  }
 }

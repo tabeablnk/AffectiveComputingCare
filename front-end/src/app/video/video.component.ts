@@ -1,4 +1,5 @@
 import { Component, ElementRef, HostListener, OnInit, ViewChild } from "@angular/core";
+import { StateService } from "../Services/state.service";
 
 @Component({
   selector: "app-video",
@@ -9,7 +10,7 @@ export class VideoComponent implements OnInit {
 
   @ViewChild('video') videoplayer!: ElementRef;
 
-  constructor() {}
+  constructor(private state: StateService) {}
 
 
   ngOnInit(): void {}
@@ -19,5 +20,10 @@ export class VideoComponent implements OnInit {
     if (event.keyCode == 32) {
       this.videoplayer.nativeElement.play();
     }
+  }
+
+
+  setCurrentTime(data: any) {
+     this.state.setState(Math.round(data.target.currentTime));
   }
 }

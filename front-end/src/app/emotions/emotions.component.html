@@ -3,7 +3,7 @@
 
     <div #chartContainer class="chart-container" style="display: block">
         <canvas [ngStyle]="{'height.px': chartContainer.offsetHeight - 16 }" mdbChart [chartType]="chartType" [datasets]="[
-            { data: [this.rs.patientData[this.state.state]['emotions']['happy'], this.rs.patientData[this.state.state]['emotions']['neutral'], this.rs.patientData[this.state.state]['emotions']['sad']]}
+            { data: [this.rs.patientData[this.state.state]['emotions']['sad'], this.rs.patientData[this.state.state]['emotions']['neutral'], this.rs.patientData[this.state.state]['emotions']['happy']]}
           ]" [labels]="chartLabels" [colors]="chartColors" [options]="chartOptions" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">
         </canvas>
     </div>

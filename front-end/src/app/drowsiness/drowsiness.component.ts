@@ -12,15 +12,32 @@ export class DrowsinessComponent implements OnInit {
   constructor(private rs: RestService, private state: StateService) { }
 
   ngOnInit(): void {
+    this.chartDatasets = [
+      { data: [0]},
+    ];
+    let self = this;
+    setInterval(function(){ 
+      self.updateData();
+     }, 1000);
   }
+
+  public chartDatasets: Array<any> = []
 
   public chartType: string = 'line';
 
-  public chartDatasets: Array<any> = [
-    { data: [0,0,0,0,0,0,0,10,10,15,20,65, 59,0,5,10,30,55, 80, 81,100,0,0,0,0]},
-  ];
+  public updateData() {
+    let data: Array<number> = []
+    for (var i = 0; i <= this.state.state; i++) {
+      data.push(Number(this.rs.patientData[i]['drowsiness']))
+    };
+    console.log(data);
 
-  public chartLabels: Array<any> = ['00', '01', '01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23'];
+    this.chartDatasets = [
+      { data: data},
+    ];
+  }
+
+  public chartLabels: Array<any> = ['00', '01', '01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25','26','27','28','29','30','31','32','33','34','35','36','37','38','39','40','41','42','43','44','45','46','47','48','49','50' ];
 
   public chartColors: Array<any> = [
     {
@@ -31,7 +48,15 @@ export class DrowsinessComponent implements OnInit {
   ];
 
   public chartOptions: any = {
-    responsive: true
+    responsive: true,
+    scales: {
+      yAxes: [{
+        ticks: {
+          min: 0,
+          max: 100
+      }
+      }]
+    }
   };
   public chartClicked(e: any): void { }
   public chartHovered(e: any): void { }

@@ -42,7 +42,15 @@ export class EmotionsComponent implements OnInit {
 
   public chartOptions: any = {
     responsive: true,
-    maintainAspectRatio: false
+    maintainAspectRatio: false,
+    scales: {
+      yAxes: [{
+        ticks: {
+          min: 0,
+          max: 1
+      }
+      }]
+    }
   };
 
   public chartClicked(e: any): void { }

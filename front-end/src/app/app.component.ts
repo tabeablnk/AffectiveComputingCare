@@ -30,11 +30,6 @@ export class AppComponent implements OnInit {
           }
 
         )
-        let self = this;
-      setInterval(function(){ 
-        self.state.setState(self.state.getState()+1);
-        console.log(self.state.getState())
-       }, 3000);
   }
 
   
