@@ -1,17 +1,11 @@
-    <mat-card>
-        <mat-card-title>Überblick</mat-card-title>
+<mat-card>
+    <mat-card-title>Überblick</mat-card-title>
 
-        <div style="display: block">
-            <canvas mdbChart
-                [chartType]="chartType"
-                [datasets]="chartDatasets"
-                [labels]="chartLabels"
-                [colors]="chartColors"
-                [options]="chartOptions"
-                [legend]="true"
-                (chartHover)="chartHovered($event)"
-                (chartClick)="chartClicked($event)">
-            </canvas>
-          </div>
+    <div style="display: block">
+        <canvas mdbChart [chartType]="chartType" [datasets]="[
+              { data: [this.rs.patientData[this.state.state]['pain'], this.rs.patientData[this.state.state]['emotions']['sad'], this.rs.patientData[this.state.state]['drowsiness']]}]"
+              [labels]="chartLabels" [colors]="chartColors" [options]="chartOptions" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">
+        </canvas>
+    </div>
 
-    </mat-card>
+</mat-card>

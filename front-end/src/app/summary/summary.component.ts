@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { RestService } from '../Services/rest.service';
+import { StateService } from '../Services/state.service';
 
 @Component({
   selector: 'app-summary',
@@ -7,16 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SummaryComponent implements OnInit {
 
-  constructor() { }
+  constructor(public rs: RestService, public state: StateService) { }
 
-  ngOnInit(): void {
-  }
+  patientData: any;
+
+  ngOnInit(): void {}
 
   public chartType: string = 'doughnut';
-
-  public chartDatasets: Array<any> = [
-    { data: [300, 50, 100], label: 'My First dataset' }
-  ];
 
   public chartLabels: Array<any> = ['Schmerz', 'Müdigkeit', 'Psych. Bedürfnisse'];
 
@@ -31,6 +30,7 @@ export class SummaryComponent implements OnInit {
   public chartOptions: any = {
     responsive: true
   };
+
   public chartClicked(e: any): void { }
   public chartHovered(e: any): void { }
 

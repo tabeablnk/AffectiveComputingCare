@@ -1,6 +1,4 @@
 import { Component, OnChanges, OnInit } from '@angular/core';
-import { waitForAsync } from '@angular/core/testing';
-import { MatOptionSelectionChange } from '@angular/material/core';
 import { RestService } from '../Services/rest.service';
 import { StateService } from '../Services/state.service';
 
@@ -15,8 +13,7 @@ export class EmotionsComponent implements OnInit {
 
   patientData: any;
 
-  ngOnInit() {
-}
+  ngOnInit() {}
 
 
   public chartType: string = 'bar';
