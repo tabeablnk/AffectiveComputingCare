@@ -6,6 +6,8 @@ import { HttpClient } from '@angular/common/http';
 })
 export class RestService {
 
+  public patientData: any;
+
   patientDataUrl : string = "http://127.0.0.1:5000/getPatientData/";
 
   constructor(private http : HttpClient) { }
@@ -13,5 +15,9 @@ export class RestService {
   getPatientData() {
     return this.http.get<any>(this.patientDataUrl)
   }
+
+  public setPatientData (patientData: any) {
+    this.patientData = patientData;
+  } 
 
 }

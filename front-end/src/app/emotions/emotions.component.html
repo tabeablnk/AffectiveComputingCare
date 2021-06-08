@@ -1,16 +1,11 @@
 <mat-card>
     <mat-card-title>Psychische Bedürfnisse</mat-card-title>
 
-    <div style="display: block">
-        <canvas mdbChart
-            [chartType]="chartType"
-            [datasets]="chartDatasets"
-            [labels]="chartLabels"
-            [colors]="chartColors"
-            [options]="chartOptions"
-            (chartHover)="chartHovered($event)"
-            (chartClick)="chartClicked($event)">
+    <div #chartContainer class="chart-container" style="display: block">
+        <canvas [ngStyle]="{'height.px': chartContainer.offsetHeight - 16 }" mdbChart [chartType]="chartType" [datasets]="[
+            { data: [this.rs.patientData[this.state.state]['emotions']['happy'], this.rs.patientData[this.state.state]['emotions']['neutral'], this.rs.patientData[this.state.state]['emotions']['sad']]}
+          ]" [labels]="chartLabels" [colors]="chartColors" [options]="chartOptions" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">
         </canvas>
-      </div>
+    </div>
 
 </mat-card>

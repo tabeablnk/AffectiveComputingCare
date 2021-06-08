@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { RestService } from '../Services/rest.service';
+import { StateService } from '../Services/state.service';
 
 @Component({
   selector: 'app-drowsiness',
@@ -7,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DrowsinessComponent implements OnInit {
 
-  constructor() { }
+  constructor(private rs: RestService, private state: StateService) { }
 
   ngOnInit(): void {
   }

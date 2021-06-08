@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit } from '@angular/core';
 import { waitForAsync } from '@angular/core/testing';
+import { MatOptionSelectionChange } from '@angular/material/core';
 import { RestService } from '../Services/rest.service';
+import { StateService } from '../Services/state.service';
 
 @Component({
   selector: 'app-emotions',
@@ -9,41 +11,15 @@ import { RestService } from '../Services/rest.service';
 })
 export class EmotionsComponent implements OnInit {
 
-  sad = 0;
-  neutral = 0;
-  happy = 0;
-
-  constructor(public rs: RestService) { }
+  constructor(public rs: RestService, public state: StateService) { }
 
   patientData: any;
 
-  ngOnInit(){
-    this.rs.getPatientData()
-    .subscribe
-      (
-        (response) => 
-        {
-          this.patientData = response[0]["data"][0]["emotions"][0];
-          console.log("happy: " + this.patientData["happy"]);
-          console.log("sad: " + this.patientData["sad"]);
-          console.log("neutral: " + this.patientData["neutral"]);
-          this.sad = this.patientData["sad"];
-          this.neutral = this.patientData["neutral"];
-          this.happy = this.patientData["happy"];
-        },
-        (error) =>
-        {
-          console.log("No Data Found" + error);
-        }
+  ngOnInit() {
+}
 
-      );
-  }
 
   public chartType: string = 'bar';
-
-  public chartDatasets: Array<any> = [
-    { data: [this.sad, this.happy, this.neutral]}
-  ];
 
   public chartLabels: Array<any> = ['Traurig', 'Neutral', 'Happy'];
 
@@ -65,7 +41,8 @@ export class EmotionsComponent implements OnInit {
   ];
 
   public chartOptions: any = {
-    responsive: true
+    responsive: true,
+    maintainAspectRatio: false
   };
 
   public chartClicked(e: any): void { }

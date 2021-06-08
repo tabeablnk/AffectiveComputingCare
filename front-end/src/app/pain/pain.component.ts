@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { RestService } from '../Services/rest.service';
+import { StateService } from '../Services/state.service';
 
 @Component({
   selector: 'app-pain',
@@ -7,16 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PainComponent implements OnInit {
 
-  constructor() { }
+  constructor(public state: StateService, public rs: RestService) { }
 
   ngOnInit(): void {
   }
 
   public chartType: string = 'polarArea';
-
-  public chartDatasets: Array<any> = [
-    { data: [65]}
-  ];
 
   public chartLabels: Array<any> = ['Red'];
 
@@ -33,7 +31,13 @@ export class PainComponent implements OnInit {
   ];
 
   public chartOptions: any = {
-    responsive: true
+    responsive: true,
+    scale: {
+      ticks: {
+          min: 0,
+          max: 100
+      }
+    }
   };
   public chartClicked(e: any): void { }
   public chartHovered(e: any): void { }
