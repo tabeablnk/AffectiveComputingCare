@@ -53,7 +53,7 @@ export class DrowsinessComponent implements OnInit {
       yAxes: [{
         ticks: {
           min: 0,
-          max: 100
+          max: 1
       }
       }]
     }

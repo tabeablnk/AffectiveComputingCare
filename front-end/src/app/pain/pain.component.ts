@@ -35,7 +35,7 @@ export class PainComponent implements OnInit {
     scale: {
       ticks: {
           min: 0,
-          max: 100
+          max: 1
       }
     }
   };
