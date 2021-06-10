@@ -1,0 +1,36 @@
+{
+    "data": [
+        {
+            "id": 0,
+            "name": "",
+            "nachname": "",
+            "station": "",
+            "zimmer": 5,
+            "video": ""
+        },
+        {
+            "id": 0,
+            "name": "",
+            "nachname": "",
+            "station": "",
+            "zimmer": 5,
+            "video": ""
+        },
+        {
+            "id": 0,
+            "name": "",
+            "nachname": "",
+            "station": "",
+            "zimmer": 5,
+            "video": ""
+        },
+        {
+            "id": 0,
+            "name": "",
+            "nachname": "",
+            "station": "",
+            "zimmer": 5,
+            "video": ""
+        }
+    ]
+}
