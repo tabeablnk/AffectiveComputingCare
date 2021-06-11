@@ -1,5 +1,6 @@
-import { Component, ElementRef, HostListener, OnInit, ViewChild } from "@angular/core";
+import { Component, ElementRef, HostListener, OnInit, ViewChild, Input } from "@angular/core";
 import { StateService } from "../Services/state.service";
+import { Patient } from '../patienten-list/patient';
 
 @Component({
   selector: "app-video",
@@ -10,10 +11,13 @@ export class VideoComponent implements OnInit {
 
   @ViewChild('video') videoplayer!: ElementRef;
 
+  patient:any;
+
   constructor(private state: StateService) {}
 
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
 
   @HostListener("window:keyup", ["$event"])
   keyEvent(event: KeyboardEvent) {

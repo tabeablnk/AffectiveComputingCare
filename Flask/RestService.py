@@ -19,6 +19,14 @@ def GetPatientData():
      response = jsonify([patientData])
      return response
 
+@app.route("/getPatientenListe/", methods = ['GET'])
+@cross_origin(origin='localhost',headers=['Content- Type','Authorization'])
+def GetPatientList():
+     patientList = json.load(open('PatientenListe.json'))
+     print(patientList)
+     response = jsonify([patientList])
+     return response
+
 if __name__ == '__main__':
     app.run(debug=True)
 
