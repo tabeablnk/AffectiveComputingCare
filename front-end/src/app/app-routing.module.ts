@@ -7,7 +7,8 @@ import { TestPatientComponent } from './test-patient/test-patient.component';
 const routes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'home', component: TestPatientComponent},
-  {path: 'patientenListe', component: PatientenListComponent}
+  {path: 'patientenListe', component: PatientenListComponent},
+  {path: 'patient/:id', component: TestPatientComponent}
 ];
 
 @NgModule({

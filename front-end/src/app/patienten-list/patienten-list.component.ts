@@ -49,19 +49,15 @@ export class PatientenListComponent implements OnInit {
         (
           (response) => 
           {
-            this.dataSource = this.rs.setPatientList(response[0]["data"]);
+            this.dataSource = response;
             //this.dataLoaded = true;
-          },
-          (error) =>
-          {
-            console.log("No Data Found" + error);
           }
-
         )
   }
 
-  onSelect(patient:Patient) {
-    this.router.navigateByUrl('/home');
+  onSelect(patient:any) {
+    console.log(patient);
+    this.router.navigate(['/patient', patient.id]);
   }
 
 }

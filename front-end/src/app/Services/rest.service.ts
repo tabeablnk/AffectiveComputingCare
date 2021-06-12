@@ -1,5 +1,7 @@
 import { Injectable, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Patient } from '../patienten-list/patient';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -7,7 +9,7 @@ import { HttpClient } from '@angular/common/http';
 export class RestService {
 
   public patientData: any;
-  public patientList: any;
+  public patientList = [];
 
   patientDataUrl : string = "http://127.0.0.1:5000/getPatientData/";
   patientListUrl : string = "http://127.0.0.1:5000/getPatientenListe/";
@@ -22,8 +24,8 @@ export class RestService {
     this.patientData = patientData;
   } 
 
-  getPatientList() {
-    return this.http.get<any>(this.patientListUrl)
+  getPatientList(): Observable<Patient[]> {
+    return this.http.get<Patient[]>(this.patientListUrl)
   }
 
   public setPatientList (patientList: any) {
