@@ -38,26 +38,20 @@ export class PatientenListComponent implements OnInit {
   displayedColumns: string[] = ['position', 'name', 'vorname', 'station', 'zimmer', 'pfleger'];
   dataSource:any;
 
-  patienten = PATIENT;
+  patients = PATIENT;
   selectedPatient:any;
 
   constructor(private rs : RestService, public state: StateService, private router: Router) { }
 
   ngOnInit(): void {
-    this.rs.getPatientList()
-      .subscribe
-        (
-          (response) => 
-          {
-            this.dataSource = response;
-            //this.dataLoaded = true;
-          }
-        )
+    this.patients = this.rs.patientList;
+    console.log(this.patients);
   }
 
-  onSelect(patient:any) {
+  onSelect(patient:Patient) {
     console.log(patient);
-    this.router.navigate(['/patient', patient.id]);
+    this.state.setCurrentPatient(patient.id);
+    this.router.navigateByUrl('patient');
   }
 
 }

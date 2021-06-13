@@ -13,7 +13,7 @@ export class VideoComponent implements OnInit {
 
   patient:any;
 
-  constructor(private state: StateService) {}
+  constructor(public state: StateService) {}
 
 
   ngOnInit(): void {

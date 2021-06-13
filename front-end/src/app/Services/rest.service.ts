@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 export class RestService {
 
   public patientData: any;
-  public patientList = [];
+  public patientList: Patient[] = [];
 
   patientDataUrl : string = "http://127.0.0.1:5000/getPatientData/";
   patientListUrl : string = "http://127.0.0.1:5000/getPatientenListe/";
@@ -24,12 +24,13 @@ export class RestService {
     this.patientData = patientData;
   } 
 
-  getPatientList(): Observable<Patient[]> {
-    return this.http.get<Patient[]>(this.patientListUrl)
+  getPatientList() {
+    return this.http.get<any>(this.patientListUrl)
   }
 
-  public setPatientList (patientList: any) {
+  public setPatientList (patientList: Patient[]) {
     this.patientList = patientList;
   }
+
 
 }
