@@ -1,0 +1,45 @@
+<div class="container-fluid">
+    <h1>Neuen Patienten hinzufügen</h1>
+    <form #patientForm="ngForm">
+
+        <div class="form-group">
+            <label>Name: </label>
+            <input required #name="ngModel" type="text" class="form-control" 
+            [class.is-invalid]="name.invalid && name.touched" name="patientName" [(ngModel)]="dataSource.name">
+            <small class="text-danger" [class.d-none]="name.valid || name.untouched">Name ist ein Pflichtfeld</small>
+        </div>
+
+        <div class="form-group">
+            <label>Vorname: </label>
+            <input required #vorname="ngModel" type="text" class="form-control" 
+            [class.is-invalid]="vorname.invalid && vorname.touched" name="patientVorname" [(ngModel)]="dataSource.vorname">
+        </div>
+
+        <div class="form-group">
+            <label>Station: </label>
+            <input type="number" class="form-control" name="patientStation" [(ngModel)]="dataSource.station">
+        </div>
+
+        <div class="form-group">
+            <label>Zimmer: </label>
+            <input type="number" class="form-control" name="patientZimmer" [(ngModel)]="dataSource.zimmer">
+        </div>
+
+        <div class="form-group">
+            <label>Pfleger: </label>
+            <input type="text" class="form-control" name="patientPfleger" [(ngModel)]="dataSource.pfleger">
+        </div>
+
+        <div class="form-group">
+            <label>Video: </label>
+            <div>
+                <input class="btn" required #video="ngModel" type="file" accept="video/mp4,video/x-m4v,video/*" name="videoPath" [(ngModel)]="dataSource.video">
+                <small class="text-danger" [class.d-none]="video.valid || video.untouched">Bitte wähle ein gültiges Video aus</small>
+            </div>
+        </div>
+
+        <button class="btn btn-primary" type="submit">Hinzufügen</button>
+        <button class="btn btn-secondary" type="button">Abbrechen</button>
+
+    </form>
+</div>

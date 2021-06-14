@@ -16,6 +16,8 @@ import { HomeComponent } from './home/home.component';
 import { TestPatientComponent } from './test-patient/test-patient.component';
 import { HttpClientModule } from '@angular/common/http';
 import { RestService } from './Services/rest.service';
+import { AddPatientComponent } from './add-patient/add-patient.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,8 @@ import { RestService } from './Services/rest.service';
     EmotionsComponent,
     PatientenListComponent,
     HomeComponent,
-    TestPatientComponent
+    TestPatientComponent,
+    AddPatientComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +38,8 @@ import { RestService } from './Services/rest.service';
     MaterialModule,
     BrowserAnimationsModule,
     MDBBootstrapModule.forRoot(),
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [RestService],
   bootstrap: [AppComponent]
