@@ -28,9 +28,12 @@ export class RestService {
     return this.http.get<any>(this.patientListUrl)
   }
 
+  addPatient(newPatient: Patient) {
+    this.patientList.push(newPatient);
+  }
+
   public setPatientList (patientList: Patient[]) {
     this.patientList = patientList;
   }
-
 
 }
