@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { AddPatientComponent } from '../add-patient/add-patient.component';
 import { RestService } from '../Services/rest.service';
 import { StateService } from '../Services/state.service';
 import { Patient } from './patient';
@@ -19,7 +21,7 @@ export class PatientenListComponent implements OnInit {
   patients = PATIENT;
   selectedPatient:any;
 
-  constructor(private rs : RestService, public state: StateService, private router: Router) { }
+  constructor(private rs : RestService, public state: StateService, private router: Router, public popup: MatDialog) { }
 
   ngOnInit(): void {
     this.patients = this.rs.patientList;
@@ -30,6 +32,10 @@ export class PatientenListComponent implements OnInit {
     console.log(patient);
     this.state.setCurrentPatient(patient.id);
     this.router.navigateByUrl('patient');
+  }
+
+  openPopUp() {
+    this.popup.open(AddPatientComponent);
   }
 
 }

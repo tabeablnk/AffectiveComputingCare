@@ -1,45 +1,52 @@
 <div class="container-fluid">
     <h1>Neuen Patienten hinzufügen</h1>
-    <form #patientForm="ngForm">
+        <form #patientForm="ngForm">
+            
+                <div class="form-group">
+                    <label>Name: </label>
+                    <input required #name="ngModel" type="text" class="form-control" 
+                    [class.is-invalid]="name.invalid && name.touched" name="patientName" [(ngModel)]="dataSource.name">
+                    <small class="text-danger" [class.d-none]="name.valid || name.untouched">Name ist ein Pflichtfeld</small>
+                </div>
+            
+                <div class="form-group">
+                    <label>Vorname: </label>
+                    <input required #vorname="ngModel" type="text" class="form-control" 
+                    [class.is-invalid]="vorname.invalid && vorname.touched" name="patientVorname" [(ngModel)]="dataSource.vorname">
+                    <small class="text-danger" [class.d-none]="vorname.valid || vorname.untouched">Vorname ist ein Pflichtfeld</small>
+                </div>
+            
+                <div class="form-group">
+                    <label>Station: </label>
+                    <input required #station="ngModel" type="number" class="form-control"
+                    [class.is-invalid]="station.invalid && station.touched" name="patientStation" [(ngModel)]="dataSource.station">
+                    <small class="text-danger" [class.d-none]="station.valid || station.untouched">Station ist ein Pflichtfeld</small>
+                </div>
+            
+                <div class="form-group">
+                    <label>Zimmer: </label>
+                    <input required #zimmer="ngModel" type="number" class="form-control" 
+                    [class.is-invalid]="zimmer.invalid && zimmer.touched" name="patientZimmer" [(ngModel)]="dataSource.zimmer">
+                    <small class="text-danger" [class.d-none]="zimmer.valid || zimmer.untouched">Zimmer ist ein Pflichtfeld</small>
+                </div>
+            
+                <div class="form-group">
+                    <label>Pfleger: </label>
+                    <input required #pfleger="ngModel" type="text" class="form-control"
+                    [class.is-invalid]="pfleger.invalid && pfleger.touched" name="patientPfleger" [(ngModel)]="dataSource.pfleger">
+                    <small class="text-danger" [class.d-none]="pfleger.valid || pfleger.untouched">Pfleger ist ein Pflichtfeld</small>
+                </div>
+            
+                <div class="form-group">
+                    <label>Video: </label>
+                    <div>
+                        <input class="btn" required #video="ngModel" type="file" accept="video/mp4,video/x-m4v,video/*" name="videoPath" [(ngModel)]="dataSource.video">
+                        <small class="text-danger" [class.d-none]="video.valid || video.untouched">Bitte wähle ein gültiges Video aus</small>
+                    </div>
+                </div>
 
-        <div class="form-group">
-            <label>Name: </label>
-            <input required #name="ngModel" type="text" class="form-control" 
-            [class.is-invalid]="name.invalid && name.touched" name="patientName" [(ngModel)]="dataSource.name">
-            <small class="text-danger" [class.d-none]="name.valid || name.untouched">Name ist ein Pflichtfeld</small>
-        </div>
-
-        <div class="form-group">
-            <label>Vorname: </label>
-            <input required #vorname="ngModel" type="text" class="form-control" 
-            [class.is-invalid]="vorname.invalid && vorname.touched" name="patientVorname" [(ngModel)]="dataSource.vorname">
-        </div>
-
-        <div class="form-group">
-            <label>Station: </label>
-            <input type="number" class="form-control" name="patientStation" [(ngModel)]="dataSource.station">
-        </div>
-
-        <div class="form-group">
-            <label>Zimmer: </label>
-            <input type="number" class="form-control" name="patientZimmer" [(ngModel)]="dataSource.zimmer">
-        </div>
-
-        <div class="form-group">
-            <label>Pfleger: </label>
-            <input type="text" class="form-control" name="patientPfleger" [(ngModel)]="dataSource.pfleger">
-        </div>
-
-        <div class="form-group">
-            <label>Video: </label>
-            <div>
-                <input class="btn" required #video="ngModel" type="file" accept="video/mp4,video/x-m4v,video/*" name="videoPath" [(ngModel)]="dataSource.video">
-                <small class="text-danger" [class.d-none]="video.valid || video.untouched">Bitte wähle ein gültiges Video aus</small>
-            </div>
-        </div>
-
-        <button class="btn btn-primary" type="submit">Hinzufügen</button>
-        <button class="btn btn-secondary" type="button">Abbrechen</button>
+                <button mat-dialog-close class="btn btn-primary" type="submit">Hinzufügen</button>
+                <button mat-dialog-close class="btn btn-secondary" type="button">Abbrechen</button>
 
     </form>
 </div>

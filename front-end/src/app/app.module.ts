@@ -30,7 +30,7 @@ import { FormsModule } from '@angular/forms';
     PatientenListComponent,
     HomeComponent,
     TestPatientComponent,
-    AddPatientComponent
+    AddPatientComponent,
   ],
   imports: [
     BrowserModule,
@@ -39,7 +39,7 @@ import { FormsModule } from '@angular/forms';
     BrowserAnimationsModule,
     MDBBootstrapModule.forRoot(),
     HttpClientModule,
-    FormsModule
+    FormsModule,
   ],
   providers: [RestService],
   bootstrap: [AppComponent]
