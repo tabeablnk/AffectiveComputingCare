@@ -17,20 +17,21 @@ export class AppComponent implements OnInit {
 
   ngOnInit()
   {
-      this.rs.getPatientData()
-      .subscribe
-        (
-          (response) => 
-          {
-            this.rs.setPatientData(response[0]["data"]);
-            this.loadPatientList()
-          },
-          (error) =>
-          {
-            console.log("No Data Found" + error);
-          }
+    this.loadPatientList();
+      // this.rs.getPatientData()
+      // .subscribe
+      //   (
+      //     (response) => 
+      //     {
+      //       this.rs.setPatientData(response[0]["data"]);
+      //       this.loadPatientList()
+      //     },
+      //     (error) =>
+      //     {
+      //       console.log("No Data Found" + error);
+      //     }
 
-        )
+      //   )
   }
 
   public loadPatientList() {

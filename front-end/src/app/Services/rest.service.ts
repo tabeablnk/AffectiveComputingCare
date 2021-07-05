@@ -16,8 +16,8 @@ export class RestService {
 
   constructor(private http : HttpClient) { }
 
-  getPatientData() {
-    return this.http.get<any>(this.patientDataUrl)
+  getPatientData(patientId: number) {
+    return this.http.get<any>(this.patientDataUrl + '?patientID=' + patientId)
   }
 
   public setPatientData (patientData: any) {
@@ -35,5 +35,13 @@ export class RestService {
   public setPatientList (patientList: Patient[]) {
     this.patientList = patientList;
   }
+
+  uploadVideo(formData: FormData) {
+    return this.http.post('http://127.0.0.1:5000/uploadVideo/', formData)
+  }
+
+  generatePatientData(patientId: number) {
+    return this.http.get("http://127.0.0.1:5000/generatePatientData/?patientID=" + patientId)
+  } 
 
 }

@@ -25,17 +25,33 @@ export class PatientenListComponent implements OnInit {
 
   ngOnInit(): void {
     this.patients = this.rs.patientList;
-    console.log(this.patients);
   }
 
   onSelect(patient:Patient) {
-    console.log(patient);
+    console.log(patient.id)
     this.state.setCurrentPatient(patient.id);
-    this.router.navigateByUrl('patient');
+      this.rs.getPatientData(patient.id)
+      .subscribe
+        (
+          (response) => 
+          {
+            console.log(response);
+            this.rs.setPatientData(response[0]["data"]);
+            this.router.navigateByUrl('patient');
+          },
+          (error) =>
+          {
+            console.log("No Data Found" + error);
+          }
+
+        )
   }
 
   openPopUp() {
-    this.popup.open(AddPatientComponent);
+    this.popup.open(AddPatientComponent, {
+      height: '90vh',
+      width: "40vw"
+    });
   }
 
 }

@@ -2,13 +2,11 @@
 
 ## MAC:
 
-`python3 -m venv venc`
+`python3 -m venv venv`
 
 `. venv/bin/activate`
 
-`pip install Flask`
-
-`pip install flask_cors`
+` pip install -r requirements.txt`
 
 `python RestService.py`
 
