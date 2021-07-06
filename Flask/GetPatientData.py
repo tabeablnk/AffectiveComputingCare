@@ -22,12 +22,22 @@ def getPatientData(video_path, video_kal_path, patientID):
 
 	#TODO also get the drowsiness and pain results here and add to JSON
 	emotion_results = EmotionClassification.getResults(images)
+	drowsiness_results = read_drowsiness()
 
 	#generate and save JSON
-	result_json = generateJSON(images, emotion_results)
+	result_json = generateJSON(images, emotion_results, drowsiness_results)
 	file_name = "patientData_" + str(patientID) + ".json"
 	with open(path_to_json + file_name, "w") as file:
 		json.dump(result_json, file)
+
+
+def read_drowsiness():
+	# run blink_video.py with calibration video
+	# run blink_video.py with data video
+	# run PreprocessingOneVideo.py
+	# run Prediction.py
+	return 10
+
 
 #get images out of the video every 30 seconds
 def preprocessVideo(patientID, video_path):
@@ -50,7 +60,7 @@ def preprocessVideo(patientID, video_path):
 
 
 #JSON Generation using the values predicted by the models
-def generateJSON(images, emotion_results):
+def generateJSON(images, emotion_results, drowsiness_result):
 	print("Generating JSON...")
 	json_file = {'data': []}
 	index = 0;
@@ -66,7 +76,7 @@ def generateJSON(images, emotion_results):
 	       "pain": float(1),
 
 	      #TODO add drowsiness data here
-	       "drowsiness": float(0.5)
+	       "drowsiness": drowsiness_result
 	  })
 	  index += 1;
 	print(json_file)
