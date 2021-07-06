@@ -2,13 +2,11 @@ from flask import Flask, jsonify, request;
 from flask_cors import CORS, cross_origin
 import json
 import os
-from flask_uploads import UploadSet
 from GetPatientData import getPatientData
 
 app = Flask(__name__)
 cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
 app.config['CORS_HEADERS'] = 'Content-Type'
-media = UploadSet('media', ('mp4'))
 
 @app.route("/")
 @cross_origin(origin='localhost',headers=['Content- Type','Authorization'])
@@ -40,11 +38,9 @@ def uploadVideo():
      patientID = request.form['patientID'];
      video_file = request.files["video"]
      video_kal_file = request.files["video_kal"]
-     #media.save(video_file, name=video_file.filename)
      file_directory = '../front-end/src/assets/patientVideos/'
      video_file.save(file_directory + patientID + '_' + video_file.filename );
      video_kal_file.save(file_directory + patientID + '_' + video_kal_file.filename);
-     # video_kal_file.save(os.path.join('/uploaded_videos/video_kal.mp4'));
      return ''
 
 
@@ -59,6 +55,3 @@ def generatePatientData():
 
 if __name__ == '__main__':
     app.run(debug=True)
-
-
-
