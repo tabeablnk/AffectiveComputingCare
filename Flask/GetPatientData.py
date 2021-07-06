@@ -6,17 +6,19 @@ import json
 from models.EmotionClassification import EmotionClassification
 
 #adjust video path here
-video_path = "../front-end/src/assets/exampleVideo.mp4"
-patientID = 1
+video_path_global = "../front-end/src/assets/exampleVideo.mp4"
+#Kalibrierungsvideo
 
-#TODO
-video_path_kal = ""
+video_kal_path_global = "../front-end/src/assets/exampleVideo.mp4"
+#Patient ID
+patientID_global = 1
+
 path_to_json = "patientData/"
 
 
 def getPatientData(video_path, video_kal_path, patientID):
-
-	images = preprocessVideo()
+	print(video_path)
+	images = preprocessVideo(patientID, video_path)
 
 	#TODO also get the drowsiness and pain results here and add to JSON
 	emotion_results = EmotionClassification.getResults(images)
@@ -28,7 +30,7 @@ def getPatientData(video_path, video_kal_path, patientID):
 		json.dump(result_json, file)
 
 #get images out of the video every 30 seconds
-def preprocessVideo():
+def preprocessVideo(patientID, video_path):
 	print("Preprocess Video...")
 	cap= cv2.VideoCapture(video_path);
 	i=0;
@@ -38,8 +40,8 @@ def preprocessVideo():
 	    if ret == False:
 	        break;
 	    if i%30 == 0 :
-	      cv2.imwrite('images/kang'+str(i)+'.jpg',frame)
-	      image = Image.open('images/kang'+str(i)+'.jpg')
+	      cv2.imwrite('images/kang'+str(i)+str(patientID)+'.jpg',frame)
+	      image = Image.open('images/kang'+str(i)+str(patientID)+'.jpg')
 	      images.append(image);
 	    i+=1
 	cap.release()
@@ -72,7 +74,7 @@ def generateJSON(images, emotion_results):
 
 def main():
     print("Starting...")
-    getPatientData(video_path, patientID);
+    getPatientData(video_path_global, video_kal_path_global, patientID_global);
 
 
 if __name__ == "__main__":

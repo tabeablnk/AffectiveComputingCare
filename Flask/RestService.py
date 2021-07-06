@@ -50,6 +50,7 @@ def generatePatientData():
      patientID = request.args.get("patientID");
      video_directory = '../front-end/src/assets/patientVideos/' + patientID + '_video.mp4'
      video_kal_directory = '../front-end/src/assets/patientVideos/' + patientID + '_video_kal.mp4'
+     print(video_directory)
      getPatientData(video_directory, video_kal_directory, patientID)
      return ''
 
