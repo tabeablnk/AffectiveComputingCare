@@ -2,14 +2,14 @@ import os
 import numpy as np
 
 class Preprocessing():
-    def __init__(self):
-        self.__path_to_video = './Drowsiness/data.txt'  # man muss mit cd in DrowsinessModel sein
-        self.__path_to_calibration = './Drowsiness/calibration.txt'
+    def __init__(self, path_to_video, path_to_calibration, output_path):
+        self.__path_to_video = path_to_video
+        self.__path_to_calibration = path_to_calibration
         self.__stride = 2
         self.__window_size = 30
         self.__blink_num_calibration = None
         self.__blink_num = None
-        self.__output_path = './Blinks_pred_video.npy'
+        self.__output_path = output_path
         self.__frequency_calibration = None
         self.__amplitude_calibration = None
         self.__duration_calibration = None
@@ -94,4 +94,7 @@ class Preprocessing():
 
 
 if __name__ == '__main__':
-    Preprocessing().main()
+    output_path = './Blinks_pred_video_3.npy'
+    path_to_video = './txt_files/data.txt'  # man muss mit cd in DrowsinessModel sein
+    path_to_calibration = './txt_files/calibration.txt'
+    Preprocessing(path_to_video=path_to_video, path_to_calibration=path_to_calibration, output_path=output_path).main()

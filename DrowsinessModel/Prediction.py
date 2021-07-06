@@ -5,7 +5,6 @@ Output: 1 label
 
 import numpy as np
 import tensorflow as tf
-#from Training import Network
 import HMSLSTM_Main as Main
 
 
@@ -32,6 +31,17 @@ class Predict():
 		self.step_size = 30
 		self.keep_p = 1.0
 
+	def main(self, path_to_preprocessed_file):
+		# preprocessed blinks:
+		Blinks = np.load(path_to_preprocessed_file)  # load data from npy file
+		# Normalize the input (second phase)
+		Blinks[:, :, 0] = (Blinks[:, :, 0] - np.mean(Blinks[:, :, 0])) / np.std(Blinks[:, :, 0])
+		Blinks[:, :, 1] = (Blinks[:, :, 1] - np.mean(Blinks[:, :, 1])) / np.std(Blinks[:, :, 1])
+		Blinks[:, :, 2] = (Blinks[:, :, 2] - np.mean(Blinks[:, :, 2])) / np.std(Blinks[:, :, 2])
+		Blinks[:, :, 3] = (Blinks[:, :, 3] - np.mean(Blinks[:, :, 3])) / np.std(Blinks[:, :, 3])
+		label = self.predict(Blinks)
+		return label
+
 	def predict(self, Blinks):
 		tf.reset_default_graph()
 		# Create shape of the network to restore pretrained weights
@@ -49,10 +59,10 @@ class Predict():
 			# predict value for one video
 			if output_size == 1:
 				classification = sess.run([output], feed_dict={input_net: Blinks, keep_p: 1.0, training: False})
-				self.calculate_prediction(classification)
+				label = self.calculate_prediction(classification)
+		return label
 
 	def calculate_prediction(self, predictions):
-		# TODO: Verify correctnes and improve
 		labels_pool = np.array([0, 5, 10])
 		prediction_count = 0
 		for prediction in predictions[0]:
@@ -65,6 +75,7 @@ class Predict():
 		else:
 			label = 10
 		print('The predicted label is: ', label)
+		return label
 
 
 	def initialize_net(self, input_net, training):
@@ -177,16 +188,6 @@ class Predict():
 		return normed
 
 
-def main():
-	# preprocessed blinks:
-	Blinks = np.load('./Blinks_pred_video.npy')  # load data from npy file
-	# Normalize the input (second phase)
-	Blinks[:, :, 0] = (Blinks[:, :, 0] - np.mean(Blinks[:, :, 0])) / np.std(Blinks[:, :, 0])
-	Blinks[:, :, 1] = (Blinks[:, :, 1] - np.mean(Blinks[:, :, 1])) / np.std(Blinks[:, :, 1])
-	Blinks[:, :, 2] = (Blinks[:, :, 2] - np.mean(Blinks[:, :, 2])) / np.std(Blinks[:, :, 2])
-	Blinks[:, :, 3] = (Blinks[:, :, 3] - np.mean(Blinks[:, :, 3])) / np.std(Blinks[:, :, 3])
-	Predict().predict(Blinks)
-
-
 if __name__ == '__main__':
-	main()
+	path_to_preprocessed_file = './Blinks_pred_video.npy'
+	Predict().main(path_to_preprocessed_file)

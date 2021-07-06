@@ -4,6 +4,9 @@ from PIL import Image
 import numpy as np
 import json
 from models.EmotionClassification import EmotionClassification
+from DrowsinessModel.PreprocessOneVideo import Preprocessing
+from DrowsinessModel.blink_video import blink_detector
+from DrowsinessModel.Prediction import Predict
 
 #adjust video path here
 video_path_global = "../front-end/src/assets/exampleVideo.mp4"
@@ -32,11 +35,20 @@ def getPatientData(video_path, video_kal_path, patientID):
 
 
 def read_drowsiness():
+	# TODO: Verify paths and naming of files
 	# run blink_video.py with calibration video
+	output_path_txt = './DrowsinessModel/txt_files'
+	output_path_txt_calib = output_path_txt + 'calibration.txt'
+	output_path_txt_data = output_path_txt + 'data.txt'
+	blink_detector(output_path_txt_calib, video_kal_path_global)
 	# run blink_video.py with data video
+	blink_detector(output_path_txt_data, video_path_global)
 	# run PreprocessingOneVideo.py
+	output_path_preprocessed = './DrowsinessModel/preprocessed_files'
+	Preprocessing(output_path_txt_calib, output_path_txt_data, output_path_preprocessed)
 	# run Prediction.py
-	return 10
+	label = Predict().main(output_path_preprocessed)
+	return label
 
 
 #get images out of the video every 30 seconds
@@ -74,8 +86,6 @@ def generateJSON(images, emotion_results, drowsiness_result):
 	      },
 	      #TODO add pain data here
 	       "pain": float(1),
-
-	      #TODO add drowsiness data here
 	       "drowsiness": drowsiness_result
 	  })
 	  index += 1;
