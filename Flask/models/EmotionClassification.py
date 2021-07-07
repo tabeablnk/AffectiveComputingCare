@@ -1,4 +1,6 @@
 import tensorflow as tf
+import tensorflow as tf
+import tensorflow as tf
 import numpy as np
 import os
 
@@ -8,7 +10,7 @@ class EmotionClassification:
 	@staticmethod
 	def getResults(images):
 		print("Getting Emotion Values...")
-		emotion_model = tf.keras.models.load_model("models/emotion_model");
+		emotion_model = tf.keras.models.load_model("models/emotion_model.h5");
 		preprocessedImages = []
 		emotion_results = [];
 

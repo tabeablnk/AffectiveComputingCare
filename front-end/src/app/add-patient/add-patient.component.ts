@@ -19,6 +19,7 @@ export class AddPatientComponent implements OnInit {
   video!: any;
   video_kal!: any;
   loading: boolean = false;
+  use_existing_files: boolean = false;
 
 
   ngOnInit(): void {
@@ -62,7 +63,7 @@ export class AddPatientComponent implements OnInit {
         {
           console.log("Videos are uploaded!")
           this.rs.addPatient(newPatient);  
-          this.rs.generatePatientData(patientID)
+          this.rs.generatePatientData(patientID, this.use_existing_files)
           .subscribe
             (
               (response) => 
