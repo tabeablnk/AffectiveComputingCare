@@ -36,17 +36,9 @@ def adjust_gamma(image, gamma=1.0):
     # apply gamma correction using the lookup table
     return cv2.LUT(image, table)
 
-#
 
-
-#
-
-def blink_detector(output_textfile,input_video):
-
-
-
+def blink_detector(output_file, input_video):
     Q = Queue(maxsize=7)
-
     FRAME_MARGIN_BTW_2BLINKS=3
     MIN_AMPLITUDE=0.04
     MOUTH_AR_THRESH=0.35
@@ -345,7 +337,7 @@ def blink_detector(output_textfile,input_video):
     # loop over frames from the video stream
 
 
-    stream = cv2.VideoCapture(path)
+    stream = cv2.VideoCapture(input_video)
     start = datetime.datetime.now()
     number_of_frames=0
     while True:
@@ -570,10 +562,7 @@ def blink_detector(output_textfile,input_video):
     cv2.destroyAllWindows()
 
 
-
-#############
-####Main#####
-#############
-output_file = 'data.txt'  # 'calibration.txt' #  The text file to write to (for blinks)
-path = './test_video_to_predict.mov'  # the path to the input video
-blink_detector(output_file, path)
+if __name__ == '__main__':
+    output_file = 'data.txt'  # 'calibration.txt' #  The text file to write to (for blinks)
+    path = './test_video_to_predict.mov'  # the path to the input video
+    blink_detector(output_file, path)
