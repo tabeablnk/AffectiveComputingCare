@@ -47,11 +47,12 @@ def uploadVideo():
 @app.route("/generatePatientData/", methods = ['GET'])
 @cross_origin(origin='localhost',headers=['Content- Type','Authorization'])
 def generatePatientData():
+     use_existing_files = request.args.get("use_existing_files");
      patientID = request.args.get("patientID");
      video_directory = '../front-end/src/assets/patientVideos/' + patientID + '_video.mp4'
      video_kal_directory = '../front-end/src/assets/patientVideos/' + patientID + '_video_kal.mp4'
      print(video_directory)
-     getPatientData(video_directory, video_kal_directory, patientID)
+     getPatientData(video_directory, video_kal_directory, patientID, use_existing_files)
      return ''
 
 if __name__ == '__main__':

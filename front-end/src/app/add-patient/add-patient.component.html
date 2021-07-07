@@ -31,11 +31,15 @@
             <small class="text-danger" [class.d-none]="zimmer.valid || zimmer.untouched">Zimmer ist ein Pflichtfeld</small>
         </div>
 
-        <div class="form-group">
-            <label>Pfleger: </label>
-            <input required #pfleger="ngModel" type="text" class="form-control" [class.is-invalid]="pfleger.invalid && pfleger.touched" name="patientPfleger" [(ngModel)]="dataSource.pfleger">
+        <mat-form-field #pfleger="ngModel" [class.is-invalid]="pfleger.invalid && pfleger.touched" required appearance="fill" [(ngModel)]="dataSource.pfleger">
+            <mat-label>Pfleger:</mat-label>
+            <mat-select disableRipple [(ngModel)]="dataSource.pfleger">
+                <mat-option value="Frau Kaltenecker">Frau Kalenecker</mat-option>
+                <mat-option value="Herr Schmidt">Herr Schmidt</mat-option>
+                <mat-option value="Frau Ferstl">Frau Ferstl</mat-option>
+            </mat-select>
             <small class="text-danger" [class.d-none]="pfleger.valid || pfleger.untouched">Pfleger ist ein Pflichtfeld</small>
-        </div>
+        </mat-form-field>
 
         <div class="form-group">
             <label>Video: </label>
