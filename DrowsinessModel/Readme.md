@@ -9,7 +9,7 @@
 ### Create Conda environment with all required installations
 After downloading miniconda you can create an environment: 
 
-- conda create -name myenv python 3.6
+- conda create -name myenv python==3.6
 - conda activate myenv
 
 ~$conda install -c conda-forge tensorflow==1.8.0
@@ -28,7 +28,7 @@ After downloading miniconda you can create an environment:
 
 ~$ conda install -c conda-forge opencv
 
-~$ conda install -c anaconda scipy
+###### ~$ conda install -c anaconda scipy
 
 pip install -U scikit_learn==0.20.4
 
