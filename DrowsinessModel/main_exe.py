@@ -25,8 +25,9 @@ def read_drowsiness(patient_id, use_existing_files):
 	output_path_txt_calib = run_blink_video_calib(patient_id, use_existing_files)
 	output_path_txt_data = run_blink_video_data(patient_id, use_existing_files)
 	# Run Preprocessing
-	file_name_prep = "Blinks_pred_video_" + str(patient_id) + ".npy"
-	file_name_prep = "Blinks_pred_video_ingrid.npy"
+	file_name_prep = "Blinks_pred_video_" + str(patient_id)[1:-1] + ".npy"
+	print(file_name_prep)
+	#file_name_prep = "Blinks_pred_video_0.npy"
 	output_path_preprocessed = os.path.join('preprocessed_files', file_name_prep)
 	is_file = os.path.isfile(os.path.join(os.getcwd(), 'preprocessed_files', file_name_prep))
 	if not(use_existing_files and is_file):
@@ -42,8 +43,8 @@ def read_drowsiness(patient_id, use_existing_files):
 
 def run_blink_video_calib(patient_id, use_existing_files):
 	output_path_txt = './txt_files'
-	file_name_calib = "calibration_" + str(patient_id) + ".txt"
-	file_name_calib = "calibration_ingrid.txt"
+	file_name_calib = "calibration_" + str(patient_id)[1:-1] + ".txt"
+	#file_name_calib = "calibration_0.txt"
 	output_path_txt_calib = os.path.join(output_path_txt, file_name_calib)
 	is_file = os.path.isfile(os.path.join(os.getcwd(), 'txt_files', file_name_calib))
 	if not (use_existing_files and is_file):
@@ -56,8 +57,8 @@ def run_blink_video_calib(patient_id, use_existing_files):
 
 def run_blink_video_data(patient_id, use_existing_files):
 	output_path_txt = './txt_files'
-	file_name_data = "data_" + str(patient_id) + ".txt"
-	file_name_data = "data_ingrid.txt"
+	file_name_data = "data_" + str(patient_id)[1:-1] + ".txt"
+	#file_name_data = "data_0.txt"
 	output_path_txt_data = os.path.join(output_path_txt, file_name_data)
 	is_file = os.path.isfile(os.path.join(os.getcwd(), 'txt_files', file_name_data))
 	if not (use_existing_files and is_file):

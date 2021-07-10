@@ -36,6 +36,7 @@ export class AddPatientComponent implements OnInit {
   }
 
   addPatient(): void {
+    console.log(this.dataSource.pfleger)
     this.loading = true;
     let patientID = this.rs.patientList.length;
     let newPatient: Patient = {

@@ -28,6 +28,7 @@ export class VideoComponent implements OnInit {
 
 
   setCurrentTime(data: any) {
+    console.log(Math.round(data.target.currentTime));
      this.state.setState(Math.round(data.target.currentTime));
   }
 }

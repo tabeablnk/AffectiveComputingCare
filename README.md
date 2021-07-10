@@ -14,7 +14,7 @@
 
 `. venv/bin/activate`
 
-` pip install -r requirements.txt`
+`pip install -r requirements.txt`
 
 `python RestService.py`
 
@@ -26,9 +26,7 @@
 
 `venv\Scripts\activate`
 
-`pip install Flask`
-
-`pip install flask_cors`
+`pip install -r requirements.txt`
 
 `python RestService.py`
 

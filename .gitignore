@@ -1,3 +1,6 @@
 Flask/venv
 Flask/models/emotion_model
 front-end/node-modules
+*.mp4
+.DS_Store
+front-end/src/assets/patientVideos.zip

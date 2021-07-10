@@ -10,11 +10,11 @@ class PainClassification:
 	@staticmethod
 	def getResults(images):
 		print("Getting Pain Values...")
-		pain_model = tf.keras.models.load_model("models/pain_model");
+		pain_model = tf.keras.models.load_model("models/model_pain_with_emotion_150epochs.h5");
 		preprocessedImages = []
 		pain_results = [];
 
-		img_width,img_height = 60,88
+		img_width,img_height = 48,48
 
 		# Preprocess Images
 		for image in images:
@@ -26,7 +26,6 @@ class PainClassification:
 
 		# Prediction
 		for image in preprocessedImages:
-			val = emotion_model.predict(image)
+			val = pain_model.predict(image)
 			pain_results.append(val)
-		
 		return pain_results;

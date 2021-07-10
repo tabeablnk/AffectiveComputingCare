@@ -6,7 +6,7 @@
         "station": 2,
         "zimmer": 15,
         "pfleger": "Frau Kaltenecker",
-        "video": ""
+        "videoPath": "../../assets/patientVideos/0_video.mp4"
     },
     {
         "id": 1,
@@ -15,7 +15,7 @@
         "station": 1,
         "zimmer": 5,
         "pfleger": "Herr Schmidt",
-        "video": ""
+        "videoPath": "../../assets/patientVideos/1_video.mp4"
     },
     {
         "id": 2,
@@ -24,7 +24,7 @@
         "station": 3,
         "zimmer": 25,
         "pfleger": "Herr Schmidt",
-        "video": ""
+        "videoPath": "../../assets/patientVideos/2_video.mp4"
     },
     {
         "id": 3,
@@ -33,6 +33,6 @@
         "station": 5,
         "zimmer": 12,
         "pfleger": "Frau Ferstl",
-        "video": ""
+        "videoPath": "../../assets/patientVideos/3_video.mp4"
     }
 ]

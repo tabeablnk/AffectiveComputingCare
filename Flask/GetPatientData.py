@@ -5,18 +5,19 @@ from PIL import Image
 import numpy as np
 import json
 from models.EmotionClassification import EmotionClassification
+from models.PainClassification import PainClassification
 
 # Import DrowsinessModel (set system variables)
-current_dir = os.getcwd()
-import sys
-sys.path.insert(0, os.path.join(current_dir, 'DrowsinessModel'))
-from PreprocessOneVideo import Preprocessing
-from blink_video import blink_detector
-from Prediction import Predict
-print("Import successfully")
+#current_dir = os.getcwd()
+#import sys
+#sys.path.insert(0, os.path.join(current_dir, 'DrowsinessModel'))
+#from PreprocessOneVideo import Preprocessing
+#from blink_video import blink_detector
+#from Prediction import Predict
+#print("Import successfully")
 
 # adjust video path here
-video_path_global = "../front-end/src/assets/exampleVideo.mp4"
+video_path_global = "../front-end/src/assets/patientVideos/1_video.mp4"
 # Kalibrierungsvideo
 
 video_kal_path_global = "../front-end/src/assets/exampleVideo.mp4"
@@ -32,11 +33,12 @@ def getPatientData(video_path, video_kal_path, patientID, use_existing_files=Tru
 
 	# TODO also get the drowsiness and pain results here and add to JSON
 	emotion_results = EmotionClassification.getResults(images)
+	pain_resutls = PainClassification.getResults(images)
 	# emotion_results = None
-	drowsiness_results = read_drowsiness(patientID, use_existing_files)
+	#drowsiness_results = read_drowsiness(patientID, use_existing_files)
 
 	# generate and save JSON
-	result_json = generateJSON(images, emotion_results, drowsiness_results)
+	result_json = generateJSON(images, emotion_results, pain_resutls, 5)
 	file_name = "patientData_" + str(patientID) + ".json"
 	with open(path_to_json + file_name, "w") as file:
 		json.dump(result_json, file)
@@ -101,6 +103,13 @@ def preprocessVideo(patientID, video_path):
 		if i % 30 == 0:
 			cv2.imwrite('images/kang' + str(i) + str(patientID) + '.jpg', frame)
 			image = Image.open('images/kang' + str(i) + str(patientID) + '.jpg')
+			#Crop image to square
+			width, height = image.size   # Get dimensions
+			left = (width - height)/2
+			top = (height - height)/2
+			right = (width + height)/2
+			bottom = (height + height)/2
+			image = image.crop((left, top, right, bottom))
 			images.append(image)
 		i += 1
 	cap.release()
@@ -109,7 +118,7 @@ def preprocessVideo(patientID, video_path):
 
 
 # JSON Generation using the values predicted by the models
-def generateJSON(images, emotion_results, drowsiness_result):
+def generateJSON(images, emotion_results, pain_resutls, drowsiness_result):
 	print("Generating JSON...")
 	json_file = {'data': []}
 	index = 0;
@@ -122,7 +131,7 @@ def generateJSON(images, emotion_results, drowsiness_result):
 				"neutral": float(emotion_results[index][0][0])
 			},
 			# TODO add pain data here
-			"pain": float(1),
+			"pain": float(pain_resutls[index][0][0]),
 			"drowsiness": drowsiness_result
 		})
 		index += 1;

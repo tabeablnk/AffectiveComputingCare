@@ -10,7 +10,7 @@ class EmotionClassification:
 	@staticmethod
 	def getResults(images):
 		print("Getting Emotion Values...")
-		emotion_model = tf.keras.models.load_model("models/emotion_model.h5");
+		emotion_model = tf.keras.models.load_model("models/emotion_model");
 		preprocessedImages = []
 		emotion_results = [];
 

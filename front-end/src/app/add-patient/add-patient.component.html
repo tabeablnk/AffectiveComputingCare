@@ -33,7 +33,7 @@
 
         <mat-form-field #pfleger="ngModel" [class.is-invalid]="pfleger.invalid && pfleger.touched" required appearance="fill" [(ngModel)]="dataSource.pfleger">
             <mat-label>Pfleger:</mat-label>
-            <mat-select disableRipple [(ngModel)]="dataSource.pfleger">
+            <mat-select disableRipple [(value)]="dataSource.pfleger">
                 <mat-option value="Frau Kaltenecker">Frau Kalenecker</mat-option>
                 <mat-option value="Herr Schmidt">Herr Schmidt</mat-option>
                 <mat-option value="Frau Ferstl">Frau Ferstl</mat-option>
@@ -45,22 +45,22 @@
             <label>Video: </label>
             <div>
                 <input class="btn" required #video="ngModel" type="file" accept="video/mp4,video/x-m4v,video/*" name="videoPath" [(ngModel)]="dataSource.video" (change)="onVideoSelected($event)">
-                <small class=" text-danger " [class.d-none]="video.valid || video.untouched ">Bitte wähle ein gültiges Video aus</small>
+                <small class=" text-danger" [class.d-none]="video.valid || video.untouched">Bitte wähle ein gültiges Video aus</small>
             </div>
         </div>
 
-        <div class="form-group ">
+        <div class="form-group">
             <label>Kallibrierungsvideo: </label>
             <div>
-                <input class="btn" required #video_kal="ngModel" type="file" accept="video/mp4,video/x-m4v,video/* " name="videoPath" [(ngModel)]="dataSource.video_kal" (change)="onVideoKalSelected($event)">
-                <small class="text-danger " [class.d-none]="video.valid || video.untouched ">Bitte wähle ein gültiges Video aus</small>
+                <input class="btn" required #video_kal="ngModel" type="file" accept="video/mp4,video/x-m4v,video/*" name="videoPath" [(ngModel)]="dataSource.video_kal" (change)="onVideoKalSelected($event)">
+                <small class="text-danger" [class.d-none]="video.valid || video.untouched">Bitte wähle ein gültiges Video aus</small>
             </div>
         </div>
-
-        <mat-checkbox [(ngModel)]="use_existing_files">Existierende Dateien nehmen</mat-checkbox>
-
+        <div>
+            <mat-checkbox color="primary" [(ngModel)]="use_existing_files">Existierende Dateien verwenden</mat-checkbox>
+        </div>
         <button mat-dialog-close mat-button type="button">Abbrechen</button>
-        <button mat-button-raised color="primary " class="btn add-button btn-primary " (click)="addPatient() ">Hinzufügen</button>
+        <button mat-button-raised color="primary" class="btn add-button btn-primary" (click)="addPatient()">Hinzufügen</button>
 
     </form>
 </div>
