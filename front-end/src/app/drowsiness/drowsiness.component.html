@@ -1,16 +1,9 @@
 <mat-card>
     <mat-card-title>Müdigkeit</mat-card-title>
-    
-        <div style="display: block">
-            <canvas mdbChart
-                [chartType]="chartType"
-                [datasets]="chartDatasets"
-                [labels]="chartLabels"
-                [colors]="chartColors"
-                [options]="chartOptions"
-                (chartHover)="chartHovered($event)"
-                (chartClick)="chartClicked($event)">
+
+    <div style="display: block">
+        <canvas mdbChart [chartType]="chartType" [datasets]="[{data: [this.rs.patientData[this.state.state]['drowsiness']]}]" [labels]="chartLabels" [colors]="chartColors " [options]="chartOptions " (chartHover)="chartHovered($event) " (chartClick)="chartClicked($event) ">
             </canvas>
-          </div>
+    </div>
 
 </mat-card>

@@ -17,12 +17,14 @@ from models.PainClassification import PainClassification
 #print("Import successfully")
 
 # adjust video path here
-video_path_global = "../front-end/src/assets/patientVideos/2_video.mp4"
+video_path_global = "../front-end/src/assets/patientVideos/0_video.mp4"
 # Kalibrierungsvideo
 
 video_kal_path_global = "../front-end/src/assets/exampleVideo.mp4"
 # Patient ID
-patientID_global = 2
+patientID_global = 0
+
+drowsiness_results = [6.3889008, 9.879681, 9.014296, 6.5834045, 6.9760838]
 
 path_to_json = "patientData/"
 
@@ -38,7 +40,7 @@ def getPatientData(video_path, video_kal_path, patientID, use_existing_files=Tru
 	#drowsiness_results = read_drowsiness(patientID, use_existing_files)
 
 	# generate and save JSON
-	result_json = generateJSON(images, emotion_results, pain_resutls, 5)
+	result_json = generateJSON(images, emotion_results, pain_resutls, drowsiness_results[int(patientID)])
 	file_name = "patientData_" + str(patientID) + ".json"
 	with open(path_to_json + file_name, "w") as file:
 		json.dump(result_json, file)

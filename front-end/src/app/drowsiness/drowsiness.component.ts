@@ -9,7 +9,7 @@ import { StateService } from '../Services/state.service';
 })
 export class DrowsinessComponent implements OnInit {
 
-  constructor(private rs: RestService, private state: StateService) { }
+  constructor(public rs: RestService, public state: StateService) { }
 
   ngOnInit(): void {
     this.chartDatasets = [
