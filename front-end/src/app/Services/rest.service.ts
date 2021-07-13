@@ -41,7 +41,7 @@ export class RestService {
   }
 
   generatePatientData(patientId: number, use_existing_files: boolean) {
-    return this.http.get("http://127.0.0.1:5000/generatePatientData/?patientID=" + patientId + "?use_existing_file=" + use_existing_files)
+    return this.http.get("http://127.0.0.1:5000/generatePatientData/?patientID=" + patientId)
   } 
 
 }

@@ -21,8 +21,8 @@ export class SummaryComponent implements OnInit {
 
   public chartColors: Array<any> = [
     {
-      backgroundColor: ['#F7464A', '#46BFBD', '#FDB45C'],
-      hoverBackgroundColor: ['#FF5A5E', '#5AD3D1', '#FFC870'],
+      backgroundColor: ['#F7464A', 'rgba(54, 162, 235)', '#FDB45C'],
+      hoverBackgroundColor: ['#FF5A5E', 'rgba(70, 138, 240)', '#FFC870'],
       borderWidth: 2,
     }
   ];

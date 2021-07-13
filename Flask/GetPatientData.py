@@ -1,4 +1,4 @@
-# Imports
+ # Imports
 import os
 import cv2
 from PIL import Image
@@ -17,12 +17,12 @@ from models.PainClassification import PainClassification
 #print("Import successfully")
 
 # adjust video path here
-video_path_global = "../front-end/src/assets/patientVideos/1_video.mp4"
+video_path_global = "../front-end/src/assets/patientVideos/2_video.mp4"
 # Kalibrierungsvideo
 
 video_kal_path_global = "../front-end/src/assets/exampleVideo.mp4"
 # Patient ID
-patientID_global = 1
+patientID_global = 2
 
 path_to_json = "patientData/"
 

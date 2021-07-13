@@ -3,8 +3,8 @@
 
     <div style="display: block">
         <canvas mdbChart [chartType]="chartType" [datasets]="[
-              { data: [this.rs.patientData[this.state.state]['pain'], this.rs.patientData[this.state.state]['drowsiness'], this.rs.patientData[this.state.state]['emotions']['sad']]}]"
-              [labels]="chartLabels" [colors]="chartColors" [options]="chartOptions" [legend]="true" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">
+              { data: [this.rs.patientData[this.state.state]['pain'], this.rs.patientData[this.state.state]['drowsiness']/10, this.rs.patientData[this.state.state]['emotions']['sad']]}]" [labels]="chartLabels" [colors]="chartColors" [options]="chartOptions"
+            [legend]="true" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">
         </canvas>
     </div>
 
