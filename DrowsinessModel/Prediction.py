@@ -55,7 +55,7 @@ class Predict():
 		with tf.Session() as sess:
 			saver = tf.train.Saver()
 			print('loading variables...')
-			saver.restore(sess, variable_path + 'my_model3')
+			saver.restore(sess, variable_path + 'my_model3')  # Choose model which use to predict
 			# predict value for one video
 			if output_size == 1:
 				classification = sess.run([output], feed_dict={input_net: Blinks, keep_p: 1.0, training: False})
@@ -63,16 +63,16 @@ class Predict():
 		return label
 
 	def calculate_prediction(self, predictions):
-		labels_pool = np.array([0, 5, 10])
+		print("Predictions: ", predictions)
 		prediction_count = 0
-		for prediction in predictions[0]:
-			prediction_count += prediction
+		for prediction in predictions:
+			prediction_count += prediction[0]
 		final_decision = prediction_count / len(predictions)
-		if 5 > final_decision >= 0:
+		if 3.3 > final_decision >= 0.0:
 			label = 0
-		elif 10 > final_decision >= 5:
+		elif 6.6 > final_decision >= 3.3:
 			label = 5
-		else:
+		elif 10 >= final_decision >= 6.6:
 			label = 10
 		print('The predicted label is: ', label)
 		return label
@@ -189,5 +189,5 @@ class Predict():
 
 
 if __name__ == '__main__':
-	path_to_preprocessed_file = './Blinks_pred_video.npy'
+	path_to_preprocessed_file = './preprocessed_files/Blinks_pred_video_happy_2.npy'
 	Predict().main(path_to_preprocessed_file)
