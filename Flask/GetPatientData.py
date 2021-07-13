@@ -6,6 +6,7 @@ import numpy as np
 import json
 from models.EmotionClassification import EmotionClassification
 from models.PainClassification import PainClassification
+import subprocess
 
 # Import DrowsinessModel (set system variables)
 #current_dir = os.getcwd()
@@ -37,60 +38,13 @@ def getPatientData(video_path, video_kal_path, patientID, use_existing_files=Tru
 	emotion_results = EmotionClassification.getResults(images)
 	pain_resutls = PainClassification.getResults(images)
 	# emotion_results = None
-	#drowsiness_results = read_drowsiness(patientID, use_existing_files)
+	#drowsiness_results = read_drowsiness(patientID)
 
 	# generate and save JSON
 	result_json = generateJSON(images, emotion_results, pain_resutls, drowsiness_results[int(patientID)])
 	file_name = "patientData_" + str(patientID) + ".json"
 	with open(path_to_json + file_name, "w") as file:
 		json.dump(result_json, file)
-
-
-def read_drowsiness(patient_id, use_existing_files):
-	print("...Read drowsiness")
-	os.chdir(os.path.join(current_dir, 'DrowsinessModel'))
-	output_path_txt_calib = run_blink_video_calib(patient_id, use_existing_files)
-	output_path_txt_data = run_blink_video_data(patient_id, use_existing_files)
-	# Run Preprocessing
-	file_name_prep = "Blinks_pred_video_" + str(patient_id) + ".npy"
-	file_name_prep = "Blinks_pred_video.npy"
-	output_path_preprocessed = os.path.join('preprocessed_files', file_name_prep)
-	is_file = os.path.isfile(os.path.join(os.getcwd(), 'preprocessed_files', file_name_prep))
-	if not(use_existing_files and is_file):
-		print("Preprocessing")
-		Preprocessing(output_path_txt_calib, output_path_txt_data, output_path_preprocessed).main()
-	else:
-		print("use existing files")
-	# run Prediction.py
-	label = Predict().main(output_path_preprocessed)
-	return label
-
-
-def run_blink_video_calib(patient_id, use_existing_files):
-	output_path_txt = './txt_files'
-	file_name_calib = "calibration_" + str(patient_id) + ".txt"
-	file_name_calib = "calibration.txt"
-	output_path_txt_calib = os.path.join(output_path_txt, file_name_calib)
-	is_file = os.path.isfile(os.path.join(os.getcwd(), 'txt_files', file_name_calib))
-	if not (use_existing_files and is_file):
-		blink_detector(output_path_txt_calib, video_kal_path_global)
-	else:
-		print("use existing files")
-	return output_path_txt_calib
-
-
-def run_blink_video_data(patient_id, use_existing_files):
-	output_path_txt = './txt_files'
-	file_name_data = "data_" + str(patient_id) + ".txt"
-	file_name_data = "data.txt"
-	output_path_txt_data = os.path.join(output_path_txt, file_name_data)
-	is_file = os.path.isfile(os.path.join(os.getcwd(), 'txt_files', file_name_data))
-	if not (use_existing_files and is_file):
-		blink_detector(output_path_txt_data, video_path_global)
-	else:
-		print("use existing files")
-	return output_path_txt_data
-
 
 # get images out of the video every 30 seconds
 def preprocessVideo(patientID, video_path):
@@ -118,6 +72,9 @@ def preprocessVideo(patientID, video_path):
 	cv2.destroyAllWindows()
 	return images
 
+#def read_drowsiness(patientID):
+#	drowsiness_result = subprocess.run(['main_exe_wind.exe',  '--patientid=' + str(patientID)])
+#	print(drowsiness_result)
 
 # JSON Generation using the values predicted by the models
 def generateJSON(images, emotion_results, pain_resutls, drowsiness_result):
