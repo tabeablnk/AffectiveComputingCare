@@ -8,15 +8,6 @@ from models.EmotionClassification import EmotionClassification
 from models.PainClassification import PainClassification
 import subprocess
 
-# Import DrowsinessModel (set system variables)
-#current_dir = os.getcwd()
-#import sys
-#sys.path.insert(0, os.path.join(current_dir, 'DrowsinessModel'))
-#from PreprocessOneVideo import Preprocessing
-#from blink_video import blink_detector
-#from Prediction import Predict
-#print("Import successfully")
-
 # adjust video path here
 video_path_global = "../front-end/src/assets/patientVideos/0_video.mp4"
 # Kalibrierungsvideo
@@ -25,7 +16,7 @@ video_kal_path_global = "../front-end/src/assets/exampleVideo.mp4"
 # Patient ID
 patientID_global = 0
 
-drowsiness_results = [6.3889008, 9.879681, 9.014296, 6.5834045, 6.9760838]
+#drowsiness_results = [6.3889008, 9.879681, 9.014296, 6.5834045, 6.9760838]
 
 path_to_json = "patientData/"
 
@@ -34,11 +25,10 @@ def getPatientData(video_path, video_kal_path, patientID, use_existing_files=Tru
 	print(video_path)
 	images = preprocessVideo(patientID, video_path)
 
-	# TODO also get the drowsiness and pain results here and add to JSON
 	emotion_results = EmotionClassification.getResults(images)
 	pain_resutls = PainClassification.getResults(images)
-	# emotion_results = None
-	#drowsiness_results = read_drowsiness(patientID)
+
+	drowsiness_results = read_drowsiness(patientID)
 
 	# generate and save JSON
 	result_json = generateJSON(images, emotion_results, pain_resutls, drowsiness_results[int(patientID)])
@@ -72,9 +62,9 @@ def preprocessVideo(patientID, video_path):
 	cv2.destroyAllWindows()
 	return images
 
-#def read_drowsiness(patientID):
-#	drowsiness_result = subprocess.run(['main_exe_wind.exe',  '--patientid=' + str(patientID)])
-#	print(drowsiness_result)
+def read_drowsiness(patientID):
+	drowsiness_result = subprocess.run(['main_exe_wind.exe',  '--patientid=' + str(patientID)])
+	print(drowsiness_result)
 
 # JSON Generation using the values predicted by the models
 def generateJSON(images, emotion_results, pain_resutls, drowsiness_result):
